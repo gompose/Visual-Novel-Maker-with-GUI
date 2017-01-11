@@ -15,10 +15,15 @@ public class Reader {
 	JFrame f = new JFrame();
 	JButton b = new JButton("Next");
 	JButton a = new JButton("Previous");
-	a.setBounds(0, 100, 50, 50);
+	JButton exit = new JButton("Exit");
+
+	exit.setBounds(430, 0, 70, 50);
+	f.add(exit);
+	a.setBounds(0, 450, 100, 50);
 	f.add(a);
-	b.setBounds(100, 100, 50, 50);
+	b.setBounds(400, 450, 100, 50);
 	f.add(b);
+
 	f.setSize(500, 500);
 	f.setLayout(null);
 	f.setVisible(true);
