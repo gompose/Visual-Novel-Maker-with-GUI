@@ -4,12 +4,12 @@ import java.awt.event.*;
 
 public class Reader {
     private String text = "";
-    private int pages = "";
+    private int pages = 0;
     private String[][] book = new String[3][pages];
     public static void fill (String s){
 	// s will be a path
 	// Pull the contents of file s, and set text to it.
-	text = // Insert here
+	//text = // Insert here
 	    }
     public static void main (String[] args) {
 	JFrame f = new JFrame();
@@ -22,8 +22,7 @@ public class Reader {
 	f.setSize(500, 500);
 	f.setLayout(null);
 	f.setVisible(true);
-	
-
     }
+	
 }
     
