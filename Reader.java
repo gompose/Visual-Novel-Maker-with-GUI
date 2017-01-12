@@ -8,27 +8,59 @@ import java.io.*;
 
 public class Reader {
     private static String text = "";
-    private int pages = 0;
-    private String[][] book = new String[3][pages];
+    private static int pages;
+    private static String[][] book = new String[3][pages];
+    // 2D Array Legend
+    //[[text],[picture path],[sound path]]
+    //Page number is the element of the arrays.
     
     
-    public static void fill (String s){
-	// s will be a path
-	// Pull the contents of file s, and set text to it.
-	//text = // Insert here
+    public static int count (String s){
+        int count = 0;
+	int i = 0;
+	while (i < s.length()) {
+	    if (s.substring(i, i + 1).equals("$")) {
+		count++;
+		i++;
+	    }else{
+		i++;
 	    }
-    public static void main (String[] args) {
-	//File Reading
+	}
+	return count / 2;
+    }
 
+    public static void fillText(String _text) {
+	String workString = _text;
+	int begin = workString.indexOf( '|' );
+	int end = workString.substring(begin + 1, workString.length()).indexOf( '|');
+	String newString = workString.substring(begin + 1, end + 2);
+	
+	//LEFT OFF HERE, NEED TO PUT newString into the 2d Book array!
+	System.out.println(newString);
+    }
+
+    public static String read(String filename) {
 	try{
-	    Scanner sc = new Scanner(new File("Driver.txt"));
+	    Scanner sc = new Scanner(new File(filename));
 	    while(sc.hasNext()){
 		text += sc.next();
 	    }
 	}catch (FileNotFoundException e) {
 	    System.out.println("File Not Found!");	    
 	}
+	return text;
+    }
+
+    public static void main (String[] args) {
+	//File Reading
 	
+	read("Book1.txt");
+	pages = count(text);
+	book = new String [3][pages];
+	fillText(text);
+	
+	System.out.println(text);
+	System.out.println(pages);
 	
 	
 	
