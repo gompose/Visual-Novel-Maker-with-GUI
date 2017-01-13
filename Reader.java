@@ -10,7 +10,7 @@ import java.util.*;
 public class Reader {
     private static String text = "";
     private static int pages;
-    private static String[][] book = new String[3][pages];
+    private static String[][] book;
     // 2D Array Legend
     //[[text],[picture path],[sound path]]
     //Page number is the element of the arrays.
@@ -30,6 +30,32 @@ public class Reader {
 	return count / 2;
     }
 
+    public static void fillSound(String _text) {
+	String workString = _text;
+	int begin;
+	int end;
+	String newString;
+	int count = 0;
+	while (workString.indexOf('[') != -1) {
+	    begin = workString.indexOf('[');
+	    boolean notfound = true;
+	    end = begin + 1;
+	    while (notfound) {
+		if (workString.substring(end, end + 1).equals("]")) {
+		    notfound = false;
+		} else {
+		    end++;
+		}
+	    }
+	    newString = workString.substring(begin + 1, end);
+	    book[2][count] = newString;
+	    count++;
+	    workString = workString.substring(end + 1);
+	}
+	//System.out.println(Arrays.toString(book[2]));
+    }
+
+
     public static void fillPicture(String _text) {
 	String workString = _text;
 	int begin;
@@ -48,11 +74,11 @@ public class Reader {
 		}
 	    }
 	    newString = workString.substring(begin + 1, end);
-	    book[2][count] = newString;
+	    book[1][count] = newString;
 	    count++;
 	    workString = workString.substring(end + 1);
 	}
-	System.out.println(Arrays.toString(book[2]));
+	//System.out.println(Arrays.toString(book[1]));
     }    
     
     
@@ -74,23 +100,22 @@ public class Reader {
 		}
 	    }
 	    newString = workString.substring(begin + 1, end);
-	    book[1][count] = newString;
+	    book[0][count] = newString;
 	    count++;
 	    workString = workString.substring(end + 1);
 	}
-	System.out.println(Arrays.toString(book[1]));
+	//System.out.println(Arrays.toString(book[0]));
     }
 
-    public static String read(String filename) {
+    public static void read(String filename) {
 	try{
 	    Scanner sc = new Scanner(new File(filename));
-	    while(sc.hasNext()){
-		text += sc.next();
+	    while(sc.hasNextLine()){
+		text += sc.nextLine();
 	    }
 	}catch (FileNotFoundException e) {
 	    System.out.println("File Not Found!");	    
 	}
-	return text;
     }
 
 
@@ -99,11 +124,15 @@ public class Reader {
 	//File Reading
 	
 	read("Book1.txt");
+	System.out.println(text);
 	pages = count(text);
-	book = new String [3][pages];
+	book = new String [2][pages + 1];
 	fillText(text);
 	fillPicture(text);
-	//fillSound(text);
+	fillSound(text);
+	Arrays.toString(book[0]);
+	Arrays.toString(book[1]);
+	Arrays.toString(book[2]);
 	
 	//System.out.println(text);
 	//System.out.println(pages);

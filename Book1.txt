@@ -1,13 +1,8 @@
 
-
 $
-|Hello World!|
-{../Picture.jpg}
-[../Sound.mp3]
+|Hello World!!!| 
 $
 
 $
-|It's working!|
-{../Picture.jpg}
-[../Sound.mp3]
+|This has spaces!|
 $
