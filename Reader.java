@@ -3,6 +3,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.*;
 import java.io.*;
+import java.util.*;
 
 
 
@@ -29,14 +30,55 @@ public class Reader {
 	return count / 2;
     }
 
+    public static void fillPicture(String _text) {
+	String workString = _text;
+	int begin;
+	int end;
+	String newString;
+	int count = 0;
+	while (workString.indexOf('{') != -1) {
+	    begin = workString.indexOf('{');
+	    boolean notfound = true;
+	    end = begin + 1;
+	    while (notfound) {
+		if (workString.substring(end, end + 1).equals("}")) {
+		    notfound = false;
+		} else {
+		    end++;
+		}
+	    }
+	    newString = workString.substring(begin + 1, end);
+	    book[2][count] = newString;
+	    count++;
+	    workString = workString.substring(end + 1);
+	}
+	System.out.println(Arrays.toString(book[2]));
+    }    
+    
+    
     public static void fillText(String _text) {
 	String workString = _text;
-	int begin = workString.indexOf( '|' );
-	int end = workString.substring(begin + 1, workString.length()).indexOf( '|');
-	String newString = workString.substring(begin + 1, end + 2);
-	
-	//LEFT OFF HERE, NEED TO PUT newString into the 2d Book array!
-	System.out.println(newString);
+	int begin;
+	int end;
+	String newString;
+	int count = 0;
+	while (workString.indexOf('|') != -1) {
+	    begin = workString.indexOf('|');
+	    boolean notfound = true;
+	    end = begin + 1;
+	    while (notfound) {
+		if (workString.substring(end, end + 1).equals("|")) {
+		    notfound = false;
+		} else {
+		    end++;
+		}
+	    }
+	    newString = workString.substring(begin + 1, end);
+	    book[1][count] = newString;
+	    count++;
+	    workString = workString.substring(end + 1);
+	}
+	System.out.println(Arrays.toString(book[1]));
     }
 
     public static String read(String filename) {
@@ -51,6 +93,8 @@ public class Reader {
 	return text;
     }
 
+
+    
     public static void main (String[] args) {
 	//File Reading
 	
@@ -58,9 +102,11 @@ public class Reader {
 	pages = count(text);
 	book = new String [3][pages];
 	fillText(text);
+	fillPicture(text);
+	//fillSound(text);
 	
-	System.out.println(text);
-	System.out.println(pages);
+	//System.out.println(text);
+	//System.out.println(pages);
 	
 	
 	
@@ -89,4 +135,3 @@ public class Reader {
     }
 	
 }
-    
