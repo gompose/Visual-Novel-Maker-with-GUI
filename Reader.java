@@ -8,9 +8,10 @@ import java.util.*;
 
 
 public class Reader {
-    private static String text = "";
-    private static int pages;
-    private static String[][] book;
+    public static String text = "";
+    public static int pages;
+    public static String[][] book;
+    public static int currentPage = 1;
     // 2D Array Legend
     //[[text],[picture path],[sound path]]
     //Page number is the element of the arrays.
@@ -52,7 +53,7 @@ public class Reader {
 	    count++;
 	    workString = workString.substring(end + 1);
 	}
-	//System.out.println(Arrays.toString(book[2]));
+	System.out.println(Arrays.toString(book[2]));
     }
 
 
@@ -78,7 +79,7 @@ public class Reader {
 	    count++;
 	    workString = workString.substring(end + 1);
 	}
-	//System.out.println(Arrays.toString(book[1]));
+	System.out.println(Arrays.toString(book[1]));
     }    
     
     
@@ -104,7 +105,7 @@ public class Reader {
 	    count++;
 	    workString = workString.substring(end + 1);
 	}
-	//System.out.println(Arrays.toString(book[0]));
+	System.out.println(Arrays.toString(book[0]));
     }
 
     public static void read(String filename) {
@@ -118,6 +119,16 @@ public class Reader {
 	}
     }
 
+    public static void turnPage(int i) {
+	if (currentPage + i < 1 || currentPage + i > pages) {
+	    System.out.println("No more pages to turn!");
+	}else{
+	    currentPage += i;
+	    System.out.println("Page #" + currentPage);
+	}
+
+    }
+
 
     
     public static void main (String[] args) {
@@ -126,39 +137,30 @@ public class Reader {
 	read("Book1.txt");
 	System.out.println(text);
 	pages = count(text);
-	book = new String [2][pages + 1];
+	System.out.println(pages);
+	book = new String [3][pages];
+	Arrays.toString(book);
 	fillText(text);
 	fillPicture(text);
 	fillSound(text);
-	Arrays.toString(book[0]);
-	Arrays.toString(book[1]);
-	Arrays.toString(book[2]);
+	Arrays.toString(book);
 	
+	/*
+	fillText(text);
+	fillPicture(text);
+	fillSound(text);
+	*/	
+
 	//System.out.println(text);
 	//System.out.println(pages);
 	
 	
 	
 
+	ReaderWindow a = new ReaderWindow();
 
 
-	//GUI
-	JFrame f = new JFrame();
-	JButton b = new JButton("Next");
-	JButton a = new JButton("Previous");
-	JButton exit = new JButton("Exit");
-
-	exit.setBounds(430, 0, 70, 50);
-	f.add(exit);
-	a.setBounds(0, 450, 100, 50);
-	f.add(a);
-	b.setBounds(400, 450, 100, 50);
-	f.add(b);
-
-	f.setSize(500, 500);
-	f.setLayout(null);
-	f.setVisible(true);
-	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	
 	
 	
     }
