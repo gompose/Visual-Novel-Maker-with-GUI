@@ -32,11 +32,11 @@ public class ReaderWindow extends JFrame implements ActionListener {
 	exit.setBounds(430, 0, 70, 50);
 	f.add(exit);
 	//Text Field
-	text = new JLabel(Reader.book[0][Reader.currentPage]);
+	text = new JLabel(Reader.book[0][Reader.currentPage - 1]);
 	text.setBounds(300, 250, 200, 50);
 	f.add(text);
 	//Picture Field
-	ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage]);
+	ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage - 1]);
 	picture = new JLabel();
 	picture.setBounds(0, 0, 500, 200);
 	picture.setIcon(img);
@@ -53,14 +53,14 @@ public class ReaderWindow extends JFrame implements ActionListener {
 	String event = e.getActionCommand();
 	if(event.equals("turn 1")){
 	    Reader.turnPage(1);
-	    text.setText(Reader.book[0][Reader.currentPage]);
-	    ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage]);
+	    text.setText(Reader.book[0][Reader.currentPage - 1]);
+	    ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage - 1]);
 	    picture.setIcon(img);
 	}
 	if(event.equals("turn -1")){
 	    Reader.turnPage(-1);
-	    text.setText(Reader.book[0][Reader.currentPage]);
-	    ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage]);
+	    text.setText(Reader.book[0][Reader.currentPage - 1]);
+	    ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage - 1]);
 	    picture.setIcon(img);
 	}
     
