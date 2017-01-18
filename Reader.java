@@ -109,18 +109,20 @@ public class Reader {
     }
 
     public static void read(String filename) {
+	String _text = "";
 	try{
 	    Scanner sc = new Scanner(new File(filename));
 	    while(sc.hasNextLine()){
-		text += sc.nextLine();
+		_text += sc.nextLine();
 	    }
 	}catch (FileNotFoundException e) {
 	    System.out.println("File Not Found!");	    
 	}
+	text = _text;
     }
 
     public static void turnPage(int i) {
-	if (currentPage + i < 1 || currentPage + i > pages) {
+	if (currentPage + i < 0 || currentPage + i > pages) {
 	    System.out.println("No more pages to turn!");
 	}else{
 	    currentPage += i;
@@ -128,35 +130,24 @@ public class Reader {
 	}
 
     }
-
+    
+    public static void process(String filename){
+	read(filename);
+	pages = count(text);
+	book = new String [3][pages];
+	fillText(text);
+	fillPicture(text);
+	fillSound(text);
+    }
 
     
     public static void main (String[] args) {
 	//File Reading
-	
-	read("Book1.txt");
-	System.out.println(text);
-	pages = count(text);
-	System.out.println(pages);
-	book = new String [3][pages];
-	Arrays.toString(book);
-	fillText(text);
-	fillPicture(text);
-	fillSound(text);
-	Arrays.toString(book);
-	
-	/*
-	fillText(text);
-	fillPicture(text);
-	fillSound(text);
-	*/	
-
-	//System.out.println(text);
-	//System.out.println(pages);
+	process("Book1.txt");
 	
 	
 	
-
+	//GUI
 	ReaderWindow a = new ReaderWindow();
 
 
