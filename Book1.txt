@@ -1,8 +1,35 @@
+$
+|Hello World!|
+{Happy.jpg}
+[/Sound.mp3]
+$
 
 $
-|Hello World!!!| 
+|It's       Working!|
+{Happy.jpg}
+[/Sound.mp3]
 $
 
 $
-|This has spaces!|
+|Here are some tests|
+{Neutral.jpg}
+[/Sound.mp3]
+$
+
+$
+|A Few more tests|
+{Sad.jpg}
+[/Sound.mp3]
+$
+
+$
+|AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA|
+{Sad.jpg}
+[/Sound.mp3]
+$
+
+$
+|I am a Turtle!|
+{Turtle.jpg}
+[/Sound.mp3]
 $
