@@ -5,34 +5,43 @@ import java.util.*;
 import java.io.*;
 import java.util.*;
 
-public class Writer{
+public class Writer extends JFrame implements ActionListener{
 
     private static JFrame f = new JFrame();
-    private static JButton write = new JButton("Write to file");
+    private static JButton write;
     private static JTextField text;
     private static JTextField picture;
     private static JTextField sound;
-    private static JtextField fileName;
+    private static JTextField fileName;
 
     public void writeTo(String fileName){
 	try{
 	    FileWriter writer = new FileWriter(fileName, true);
-	    writer.println("$");
-	    writer.println("|" + text.getText() + "|");
-	    writer.println("{" + picture.getText() + "}");
-	    writer.println("[" + sound.getText() + "]");
-	    writer.close();
+	    BufferedWriter buff = new BufferedWriter(writer);
+	    buff.write("\n");
+	    buff.write("$");
+	    buff.write("\n");
+	    buff.write("|" + text.getText() + "|");
+	    buff.write("\n");
+	    buff.write("{" + picture.getText() + "}");
+	    buff.write("\n");
+	    buff.write("[" + sound.getText() + "]");
+	    buff.write("\n");
+	    buff.write("$");
+	    buff.write("\n");
+	    buff.close();
 	}catch (IOException e){
-	    System.out.println("File Not Found!");
+	    e.printStackTrace();
 	}
     }
 	
     
-    public static void main (String[] args){
+    public Writer() {
 	//Write Button
+	write = new JButton("Write to File");
 	write.addActionListener(this);
-	write.setActionCommand("Write");
-	write.setBounds(400, 450, 100, 50);
+	write.setActionCommand("done");
+	write.setBounds(400, 150, 100, 50);
 	f.add(write);
 	//Text Field
 	text = new JTextField("Text here", 60);
@@ -45,9 +54,9 @@ public class Writer{
 	picture.setBounds(200, 100, 150, 20);
 	f.add(picture);
 	//Sound
-	text = new JTextField("Sound here", 60);
-	text.setToolTipText("Input File Path");
-	text.setBounds(200, 150, 150, 20);
+	sound = new JTextField("Sound here", 60);
+	sound.setToolTipText("Input File Path");
+	sound.setBounds(200, 150, 150, 20);
 	f.add(sound);
 	//File Name
 	fileName = new JTextField("File Name.txt", 60);
@@ -56,18 +65,16 @@ public class Writer{
 	f.add(fileName);
 
 
-	f.setSize(500, 500);
+	f.setSize(500, 250);
 	f.setLayout(null);
 	f.setVisible(true);
 	f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	
-	
-
     }
 
     public void actionPerformed(ActionEvent e){
 	String event = e.getActionCommand();
-	if(event.equals("Write")){
+	if(event.equals("done")){
 	    writeTo(fileName.getText());
 	}
     }
