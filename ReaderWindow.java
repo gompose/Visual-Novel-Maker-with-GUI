@@ -11,7 +11,7 @@ public class ReaderWindow extends JFrame implements ActionListener {
     private JButton b = new JButton("Next");
     private JButton a = new JButton("Previous");
     private JButton exit = new JButton("Exit");
-    private JLabel text;
+    private JTextArea text;
     private JLabel picture;
     private JTextField textField;
     
@@ -35,8 +35,11 @@ public class ReaderWindow extends JFrame implements ActionListener {
 	exit.setBounds(430, 0, 70, 50);
 	f.add(exit);
 	//Text 
-	text = new JLabel(Reader.book[0][Reader.currentPage - 1]);
-	text.setBounds(50, 350, 200, 50);
+	text = new JTextArea(Reader.book[0][Reader.currentPage - 1], 10, 20);
+	text.setLineWrap(true);
+	text.setEditable(false);
+	text.setWrapStyleWord(true);
+	text.setBounds(50, 350, 350, 50);
 	f.add(text);
 	//Picture 
      	picture = new JLabel();
@@ -74,7 +77,7 @@ public class ReaderWindow extends JFrame implements ActionListener {
 	}
 	if(event.equals("turn -1")){
 	    Reader.turnPage(-1);
-	    text.setText(Reader.book[0][Reader.currentPage]);
+	    text.setText(Reader.book[0][Reader.currentPage - 1]);
 	    ImageIcon img = new ImageIcon(Reader.book[1][Reader.currentPage - 1]);	    Image workImg = img.getImage();
 	    Image newImg = workImg.getScaledInstance(350, 250, java.awt.Image.SCALE_SMOOTH);
 	    img = new ImageIcon(newImg);
@@ -84,7 +87,7 @@ public class ReaderWindow extends JFrame implements ActionListener {
 	    System.exit(0);
 	}
 	if(event.equals("load")){
-	    Reader.process(textField.getText());
+	    Reader.process(textField.getText(), 0);
 	}
     
     }
