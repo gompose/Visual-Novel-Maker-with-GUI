@@ -131,24 +131,28 @@ public class Reader {
 
     }
     
-    public static void process(String filename){
+    public static void process(String filename, int i){
 	read(filename);
 	pages = count(text);
 	book = new String [3][pages];
 	fillText(text);
 	fillPicture(text);
 	fillSound(text);
+	currentPage = i;
     }
 
     
     public static void main (String[] args) {
 	//File Reading
-	process("Book1.txt");
+	process("Book1.txt", 1);
 	
 	
 	
 	//GUI
 	ReaderWindow a = new ReaderWindow();
+
+	//Writer
+	Writer b = new Writer();
 
 
 	
